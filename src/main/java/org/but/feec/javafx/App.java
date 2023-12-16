@@ -1,5 +1,8 @@
 package org.but.feec.javafx;
 
+import atlantafx.base.theme.Dracula;
+import atlantafx.base.theme.PrimerDark;
+import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,10 +25,7 @@ public class App extends Application {
 
             primaryStage.setTitle("BDS JavaFX Demo");
             Scene scene = new Scene(mainStage);
-            setUserAgentStylesheet(STYLESHEET_MODENA);
-            String myStyle = getClass().getResource("css/myStyle.css").toExternalForm();
-            scene.getStylesheets().add(myStyle);
-
+            setUserAgentStylesheet(new Dracula().getUserAgentStylesheet());
             primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             primaryStage.setScene(scene);
             primaryStage.show();

@@ -1,16 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox fx:id="fpga" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="fpga" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.LoginController">
    <children>
-      <Pane prefHeight="431.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" style="-fx-background-color: #3D3F4A;" VBox.vgrow="NEVER">
          <children>
-            <Label layoutX="228.0" layoutY="37.0" text="JavaFx application" />
+            <Label text="Book store">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" top="5.0" />
+               </padding>
+            </Label>
          </children>
-      </Pane>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="350.0" prefWidth="186.0">
+               <children>
+                  <Label id="emailLabel" fx:id="emailLabel" alignment="TOP_RIGHT" text="Email:" />
+                  <TextField id="emailTextField" fx:id="emailTextField" promptText="Email" />
+                  <Label id="passwordLabel" fx:id="passwordLabel" text="Password:">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <PasswordField id="passwordTextField" fx:id="passwordTextField" promptText="Password" />
+                  <HBox alignment="BASELINE_CENTER" prefHeight="37.0" prefWidth="186.0">
+                     <children>
+                        <Button id="loginButton" fx:id="loginButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#login" text="Login">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="registerButton" fx:id="registerButton" mnemonicParsing="false" onAction="#register" text="Register">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
    </children>
 </VBox>
