@@ -4,19 +4,26 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.MenuController">
    <children>
-      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" style="-fx-background-color: #3D3F4A;">
+      <GridPane minHeight="45.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #3D3F4A;">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="263.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="275.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label text="Book store">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" top="5.0" />
-               </HBox.margin>
+            <Label text="Book store" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -24,13 +31,28 @@
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </padding>
             </Label>
+            <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label text="Login as" />
+                        <Label text="..." />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Logout" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </GridPane>
       <HBox alignment="CENTER" prefHeight="350.0" prefWidth="600.0">
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" text="Menu">
+                  <Label id="menuLabel" fx:id="menuLabel" alignment="CENTER" text="Menu">
                      <VBox.margin>
                         <Insets bottom="50.0" top="20.0" />
                      </VBox.margin>
@@ -41,17 +63,17 @@
                         <DropShadow blurType="GAUSSIAN" height="72.61" radius="40.3575" spread="0.57" width="90.82" />
                      </effect>
                   </Label>
-                  <Button mnemonicParsing="false" text="Book catalog">
+                  <Button id="bookCatalogButton" fx:id="bookCatalogButton" mnemonicParsing="false" onAction="#showBookCatalog" text="Book catalog">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Edit profile">
+                  <Button id="editProfileButton" fx:id="editProfileButton" mnemonicParsing="false" text="Edit profile">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="My orders">
+                  <Button id="myOrdersButton" fx:id="myOrdersButton" mnemonicParsing="false" text="My orders">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

@@ -21,7 +21,7 @@ public class LoginController {
     @FXML
     public Label passwordLabel;
     @FXML
-    public TextField usernameTextField;
+    public TextField emailTextField;
     @FXML
     public TextField passwordTextField;
     @FXML

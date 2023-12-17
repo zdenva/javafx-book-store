@@ -26,14 +26,14 @@ public class MenuController {
     public void showBookCatalog(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("fxml/BookCatalog.fxml"));
+            fxmlLoader.setLocation(App.class.getResource("fxml/bookCatalog.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store - book catalog");
             stage.setScene(scene);
 
-//            Stage stageOld = (Stage) showBookCatalogButton.getScene().getWindow();
-//            stageOld.close();
+            Stage stageOld = (Stage) editProfileButton.getScene().getWindow();
+            stageOld.close();
 
             stage.show();
         }catch (IOException ex){
