@@ -49,15 +49,33 @@
             </HBox>
          </children>
       </GridPane>
-      <HBox alignment="CENTER" prefHeight="199.0" prefWidth="600.0">
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label contentDisplay="CENTER" text="Book Catalog">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" prefHeight="199.0" prefWidth="600.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="Book Catalog">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button id="bookViewButton" fx:id="bookViewButton" mnemonicParsing="false" onAction="#viewBook" text="View">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="buyBookButton" fx:id="bookBuyButton" mnemonicParsing="false" onAction="#buyBook" text="Buy">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
       <TableView id="booksTable" fx:id="booksTable">
         <columns>
           <TableColumn id="idCol" fx:id="idCol" prefWidth="30.0" text="ID" />
