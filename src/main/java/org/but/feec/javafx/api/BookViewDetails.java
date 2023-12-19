@@ -3,7 +3,7 @@ package org.but.feec.javafx.api;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class BookViewDescriptions {
+public class BookViewDetails {
 
     private StringProperty detailName = new SimpleStringProperty();
     private StringProperty detailValue = new SimpleStringProperty();

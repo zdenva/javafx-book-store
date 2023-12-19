@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.BookViewController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.BookViewController">
    <children>
-      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" style="-fx-background-color: #3D3F4A;">
+      <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #3D3F4A;">
          <children>
             <Label text="Book store">
                <HBox.margin>
@@ -27,7 +26,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefWidth="200.0">
+      <HBox alignment="CENTER">
          <children>
             <Label text="Book view:">
                <VBox.margin>
@@ -44,23 +43,23 @@
             <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </HBox>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label text="Details">
-               <VBox.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TableView id="BookDetailTable" fx:id="BookDetailTable" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn id="detailNameCol" fx:id="detailNameCol" editable="false" prefWidth="115.0" sortable="false" text="Name" />
-                <TableColumn id="detailValueCol" fx:id="detailValueCol" editable="false" prefWidth="268.0" sortable="false" text="Value" />
-              </columns>
-            </TableView>
-         </children>
-      </VBox>
-      <SplitPane dividerPositions="0.5433333333333333" prefWidth="200.0">
-        <items>
+      <SplitPane dividerPositions="0.5433333333333333">
+         <items>
+            <VBox alignment="TOP_CENTER" prefWidth="100.0">
+               <children>
+                  <Label text="Details">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TableView id="bookDetailTable" fx:id="bookDetailTable" prefWidth="200.0">
+                     <columns>
+                        <TableColumn id="detailNameCol" fx:id="detailNameCol" editable="false" prefWidth="115.0" sortable="false" text="Name" />
+                        <TableColumn id="detailValueCol" fx:id="detailValueCol" editable="false" prefWidth="268.0" sortable="false" text="Value" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Authors">
@@ -69,29 +68,18 @@
                      </VBox.margin>
                   </Label>
                   <TableView id="bookAuthorTable" fx:id="bookAuthorTable" prefWidth="200.0">
-                    <columns>
-                      <TableColumn id="authorFirstNameCol" fx:id="authorFirstNameCol" prefWidth="121.0" text="First name" />
-                      <TableColumn id="authorLastNameCol" fx:id="authorLastNameCol" prefWidth="146.0" text="Last name" />
-                    </columns>
+                     <columns>
+                        <TableColumn id="authorIdCol" fx:id="authorIdCol" prefWidth="31.0" text="Id" />
+                        <TableColumn id="authorFirstNameCol" fx:id="authorFirstNameCol" prefWidth="89.0" text="First name" />
+                        <TableColumn id="authorLastNameCol" fx:id="authorLastNameCol" prefWidth="222.0" text="Last name" />
+                     </columns>
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="Languages">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TableView id="bookLanguageTable" fx:id="bookLanguageTable" prefWidth="200.0">
-                    <columns>
-                      <TableColumn id="languageNameCol" fx:id="languageNameCol" prefWidth="75.0" text="Name" />
-                      <TableColumn id="languageCodeCol" fx:id="languageCodeCol" prefWidth="75.0" text="Code" />
-                    </columns>
-                  </TableView>
-               </children>
-            </VBox>
-        </items>
+         </items>
+         <VBox.margin>
+            <Insets bottom="15.0" />
+         </VBox.margin>
       </SplitPane>
    </children>
 </VBox>

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -75,10 +76,19 @@ public class BookCatalogController {
     }
     public void viewBook() {
         try {
+            BookCatalog bookCatalog = booksTable.getSelectionModel().getSelectedItem();
+            Long bookId = bookCatalog.getId();
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/bookView.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600,600);
+
+            Parent root = fxmlLoader.load();
+            BookViewController controller = fxmlLoader.getController();
+            controller.setBookId(bookId);
+
+            Scene scene = new Scene(root);
             Stage stage = new Stage();
+
             stage.setTitle("Book store - book view");
             stage.setScene(scene);
 

@@ -33,8 +33,9 @@ public class LoginController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/Menu.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1200,600);
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             Stage stage = new Stage();
+            stage.setResizable(true);
             stage.setTitle("Book store - menu");
             stage.setScene(scene);
 
