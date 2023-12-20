@@ -13,7 +13,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.MenuController">
    <children>
-      <GridPane gridLinesVisible="true" style="-fx-background-color: #3D3F4A;">
+      <GridPane style="-fx-background-color: #3D3F4A;">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="263.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="282.0" minWidth="10.0" prefWidth="275.0" />
@@ -71,7 +71,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="editProfileButton" fx:id="editProfileButton" mnemonicParsing="false" text="Edit profile">
+                  <Button id="editProfileButton" fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfile" text="Edit profile">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

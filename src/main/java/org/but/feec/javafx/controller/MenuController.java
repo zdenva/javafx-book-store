@@ -15,7 +15,7 @@ public class MenuController {
     @FXML
     public Button editProfileButton;
     @FXML
-    public Button showBookCatalogButton;
+    public Button bookCatalogButton;
     @FXML
     public Button myOrdersButton;
 
@@ -40,4 +40,5 @@ public class MenuController {
             ExceptionHandler.handleException(ex);
         }
     };
+
 }
