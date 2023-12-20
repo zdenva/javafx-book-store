@@ -5,7 +5,6 @@ import org.but.feec.javafx.api.BookViewAuthors;
 import org.but.feec.javafx.api.BookViewDetails;
 import org.but.feec.javafx.config.DataSourceConfig;
 import org.but.feec.javafx.exceptions.DataAcessException;
-
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -5,4 +5,5 @@ public class DataAcessException extends RuntimeException{
     public DataAcessException(String msg, Throwable cause){
         super(msg, cause);
     }
+    public DataAcessException(String msg) {super(msg);}
 }

@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.CustomerEditController">
    <children>
       <GridPane minHeight="45.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #3D3F4A;">
@@ -98,7 +97,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button id="updateButton" fx:id="updateButton" mnemonicParsing="false" text="Update" />
+            <Button id="updateButton" fx:id="updateButton" mnemonicParsing="false" onAction="#updateCustomer" text="Update" />
          </children>
       </HBox>
       <HBox alignment="TOP_CENTER" />

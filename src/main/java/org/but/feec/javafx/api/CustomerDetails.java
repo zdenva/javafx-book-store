@@ -12,6 +12,19 @@ public class CustomerDetails {
     private StringProperty lastName = new SimpleStringProperty();
     private StringProperty email = new SimpleStringProperty();
     private StringProperty phoneNumber = new SimpleStringProperty();
+    private LongProperty phoneId = new SimpleLongProperty();
+
+    public long getPhoneId() {
+        return phoneId.get();
+    }
+
+    public LongProperty phoneIdProperty() {
+        return phoneId;
+    }
+
+    public void setPhoneId(long phoneId) {
+        this.phoneId.set(phoneId);
+    }
 
     public long getId() {
         return id.get();

@@ -2,6 +2,7 @@ package org.but.feec.javafx.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -20,7 +21,27 @@ public class MenuController {
     public Button myOrdersButton;
 
     public void editProfile(){
+        try {
+            Long customerId = 7L;
 
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/customerEdit.fxml"));
+            Parent root = fxmlLoader.load();
+            CustomerEditController controller = fxmlLoader.getController();
+            controller.setCustomerId(customerId);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setTitle("Book store - book catalog");
+            stage.setScene(scene);
+            Stage stageOld = (Stage) editProfileButton.getScene().getWindow();
+            stageOld.close();
+
+            stage.show();
+        }catch (IOException ex){
+            ExceptionHandler.handleException(ex);
+        }
     }
 
     public void showBookCatalog(){
@@ -40,5 +61,4 @@ public class MenuController {
             ExceptionHandler.handleException(ex);
         }
     };
-
 }

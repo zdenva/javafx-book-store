@@ -1,8 +1,6 @@
 package org.but.feec.javafx;
 
 import atlantafx.base.theme.Dracula;
-import atlantafx.base.theme.PrimerDark;
-import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
