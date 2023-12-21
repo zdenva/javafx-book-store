@@ -3,7 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.CustomerEditController">
    <children>
       <GridPane minHeight="45.0" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #3D3F4A;">
          <columnConstraints>
@@ -54,18 +54,18 @@
          <children>
             <VBox prefWidth="150.0">
                <children>
-                  <Label text="Contry:">
+                  <Label text="First Name:">
                      <VBox.margin>
                         <Insets bottom="2.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField id="countryInput" fx:id="countryInput" promptText="Germanny" />
-                  <Label text="City:">
+                  <TextField id="firstNameInput" fx:id="firstNameInput" promptText="First Name" />
+                  <Label text="Last Name:">
                      <VBox.margin>
                         <Insets bottom="2.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField id="cityInput" fx:id="cityInput" promptText="Berlin" />
+                  <TextField id="lastNameInput" fx:id="lastNameInput" promptText="Last Name" />
                </children>
                <padding>
                   <Insets right="10.0" />
@@ -73,18 +73,18 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="150.0">
                <children>
-                  <Label text="Street name:">
+                  <Label text="Email:">
                      <VBox.margin>
                         <Insets bottom="2.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField id="streetNameInput" fx:id="streetNameInput" promptText="Jones" />
-                  <Label text="Street number:">
+                  <TextField id="emailInput" fx:id="emailInput" promptText="name@domain.eu" />
+                  <Label text="Phone number:">
                      <VBox.margin>
                         <Insets bottom="2.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Spinner id="streetNumberSpinner" fx:id="streetNumberSpinner" editable="true" />
+                  <TextField id="phoneNuberInput" fx:id="phoneNumberInput" promptText="111 111 111" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -95,10 +95,45 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER">
+      <HBox alignment="TOP_CENTER">
          <children>
-            <Button id="actionButton" fx:id="actionButton" mnemonicParsing="false" text="Create Edit Address" />
+            <Button id="updateButton" fx:id="updateButton" mnemonicParsing="false" onAction="#updateCustomer" text="Update" />
          </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" />
+      <Label text="Address">
+         <VBox.margin>
+            <Insets bottom="2.0" left="15.0" />
+         </VBox.margin>
+      </Label>
+      <TableView id="addressTable" fx:id="addressTable">
+        <columns>
+          <TableColumn id="streetNameCol" fx:id="streetNameCol" prefWidth="98.0" text="Street Name" />
+          <TableColumn id="streetNumberCol" fx:id="streetNumberCol" prefWidth="100.0" text="Street Number" />
+            <TableColumn id="cityCol" fx:id="cityCol" prefWidth="75.0" text="City" />
+            <TableColumn id="countryCol" fx:id="countryCol" prefWidth="75.0" text="Country" />
+        </columns>
+         <VBox.margin>
+            <Insets left="15.0" right="15.0" />
+         </VBox.margin>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button id="editAddressButton" fx:id="editAddressButton" mnemonicParsing="false" onAction="#editAddress" text="Edit address">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="deleteAddressButton" fx:id="deleteAddressButton" mnemonicParsing="false" onAction="#deleteAddress" text="Delete Address" />
+            <Button id="addAddressButton" fx:id="addAddressButton" mnemonicParsing="false" onAction="#addAddress" text="Add address">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
          <padding>
             <Insets bottom="10.0" top="10.0" />
          </padding>

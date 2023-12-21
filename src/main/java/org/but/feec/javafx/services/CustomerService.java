@@ -22,4 +22,8 @@ public class CustomerService {
     public void editCustomerDetails(CustomerDetails customerDetails) {
         customerRepository.editCustomerDetails(customerDetails);
     }
+
+    public void editAddress(CustomerAddress customerAddress) {
+        customerRepository.editAddress(customerAddress);
+    }
 }

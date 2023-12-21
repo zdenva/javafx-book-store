@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.MenuController">
+<VBox minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.MenuController">
    <children>
       <GridPane style="-fx-background-color: #3D3F4A;">
         <columnConstraints>

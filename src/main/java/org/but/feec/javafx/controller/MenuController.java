@@ -20,12 +20,12 @@ public class MenuController {
     @FXML
     public Button myOrdersButton;
 
-    public void editProfile(){
+    public void showEditProfile(){
         try {
-            Long customerId = 7L;
+            Long customerId = 9L;
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("fxml/customerEdit.fxml"));
+            fxmlLoader.setLocation(App.class.getResource("fxml/CustomerEdit.fxml"));
             Parent root = fxmlLoader.load();
             CustomerEditController controller = fxmlLoader.getController();
             controller.setCustomerId(customerId);
@@ -47,7 +47,7 @@ public class MenuController {
     public void showBookCatalog(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("fxml/bookCatalog.fxml"));
+            fxmlLoader.setLocation(App.class.getResource("fxml/BookCatalog.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store - book catalog");

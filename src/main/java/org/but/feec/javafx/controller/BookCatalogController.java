@@ -80,7 +80,7 @@ public class BookCatalogController {
             Long bookId = bookCatalog.getId();
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("fxml/bookView.fxml"));
+            fxmlLoader.setLocation(App.class.getResource("fxml/BookView.fxml"));
 
             Parent root = fxmlLoader.load();
             BookViewController controller = fxmlLoader.getController();

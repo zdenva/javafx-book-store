@@ -67,7 +67,6 @@ public class CustomerRepository {
             PreparedStatement preparedStatement = null;
             String customerSQL = "";
             Connection connection = DataSourceConfig.getConnection();
-            System.out.println("PhoneID = " + customerDetails.getPhoneId());
             if(!hasPhoneId){
                 customerSQL = "UPDATE book_store.customer SET first_name = ?, last_name = ?, email = ?, phone_id = ? WHERE customer_id = ?;";
                 preparedStatement = connection.prepareStatement(customerSQL, Statement.RETURN_GENERATED_KEYS);
@@ -150,6 +149,35 @@ public class CustomerRepository {
             }
         }catch (SQLException ex){
             throw new DataAcessException(exception, ex);
+        }
+    }
+
+    public void editAddress(CustomerAddress customerAddress) {
+        try {
+            Connection connection = DataSourceConfig.getConnection();
+            String addressSQL = "UPDATE book_store.address SET street_name = ?, street_number = ?, city = ? WHERE address_id = ?;";
+            PreparedStatement preparedStatement = connection.prepareStatement(addressSQL, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, customerAddress.getStreetName());
+            preparedStatement.setInt(2, customerAddress.getStreetNumber());
+            preparedStatement.setString(3, customerAddress.getCity());
+            preparedStatement.setLong(4, customerAddress.getId());
+            try {
+                connection.setAutoCommit(false);
+                int effectedRows = preparedStatement.executeUpdate();
+                if(effectedRows == 0){
+                    throw new DataAcessException("Updating customer address failed.");
+                }
+                connection.commit();
+            }
+            catch (SQLException ex){
+                connection.rollback();
+                throw new DataAcessException("Updating customer address failed.", ex);
+            }
+            finally {
+                connection.setAutoCommit(true);
+            }
+        }catch (SQLException ex){
+            throw new DataAcessException("Updating customer address failed.", ex);
         }
     }
 }
