@@ -80,8 +80,7 @@ public class CustomerEditController {
         streetNumberCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, Integer>("streetNumber"));
         cityCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("city"));
         countryCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("country"));
-        ObservableList<CustomerAddress> observableList = initializeCustomerAddress(customerId);
-        addressTable.setItems(observableList);
+        updateAddressTable();
 
         CustomerDetails customerDetails = initializeCustomerDetails(customerId);
         emailInput.setText(customerDetails.getEmail());
@@ -91,6 +90,11 @@ public class CustomerEditController {
         if(phoneId != 0) {
             phoneNumberInput.setText(customerDetails.getPhoneNumber());
         }
+    }
+
+    public void updateAddressTable(){
+        ObservableList<CustomerAddress> observableList = initializeCustomerAddress(customerId);
+        addressTable.setItems(observableList);
     }
 
     @FXML
@@ -126,6 +130,15 @@ public class CustomerEditController {
     }
     @FXML
     public void deleteAddress() {
+        Long addressId = 0L;
+        addressId = addressTable.getSelectionModel().getSelectedItem().getId();
+        if(addressId == 0L){
+            System.out.println("Nothing is selected.");
+        }
+        else {
+            customerService.deleteAddress(addressId);
+            updateAddressTable();
+        }
     }
 
     public void showCustomerAddressEdit(String state){
@@ -135,13 +148,14 @@ public class CustomerEditController {
 
             Parent root = fxmlLoader.load();
             CustomerAddressEditController controller = fxmlLoader.getController();
-            if(state == "Edit"){
+            if(state == "Edit") {
                 CustomerAddress customerAddress = addressTable.getSelectionModel().getSelectedItem();
-                if (customerAddress == null){
+                if (customerAddress == null) {
                     throw new IOException();
                 }
                 controller.setAddress(customerAddress);
             }
+            controller.setCustomerId(customerId);
             controller.setState(state);
 
             Scene scene = new Scene(root);

@@ -71,7 +71,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button id="editProfileButton" fx:id="editProfileButton" mnemonicParsing="false" onAction="#editProfile" text="Edit profile">
+                  <Button id="editProfileButton" fx:id="editProfileButton" mnemonicParsing="false" onAction="#showEditProfile" text="Edit profile">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

@@ -24,6 +24,7 @@ public class CustomerAddressEditController {
     @FXML
     private TextField streetNumberInput;
     private String state;
+    private Long customerId;
     private CustomerAddress customerAddress = null;
     private CustomerService customerService;
     private CustomerRepository customerRepository;
@@ -32,6 +33,12 @@ public class CustomerAddressEditController {
         this.state = state;
         initialize();
     }
+
+    public void setCustomerId(Long customerId){
+        this.customerId = customerId;
+    }
+
+
     public void setAddress(CustomerAddress customerAddress){
         this.customerAddress = customerAddress;
     }
@@ -41,12 +48,11 @@ public class CustomerAddressEditController {
         customerService = new CustomerService(customerRepository);
         if (state == "Create"){
             actionButton.setText("Create Address");
-            actionButton.setOnMouseClicked(e -> initializeCreateAddress());
+            actionButton.setOnMouseClicked(e -> initializeCreateAddress(customerId));
         } else if (state == "Edit") {
             actionButton.setText("Edit Address");
             updateInputs();
             actionButton.setOnMouseClicked(e -> initializeEditAddress());
-
         }
     }
 
@@ -65,8 +71,11 @@ public class CustomerAddressEditController {
         customerAddress.setStreetNumber(Integer.parseInt(streetNumberInput.getText()));
     }
 
-    private void initializeCreateAddress(){
+    private void initializeCreateAddress(Long customerId){
         System.out.println("Create address.");
+        this.customerAddress = new CustomerAddress();
+        getAddressFromInputs();
+        customerService.createAddress(customerId, customerAddress);
     }
     private void initializeEditAddress(){
         getAddressFromInputs();

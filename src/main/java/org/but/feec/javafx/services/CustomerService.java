@@ -26,4 +26,11 @@ public class CustomerService {
     public void editAddress(CustomerAddress customerAddress) {
         customerRepository.editAddress(customerAddress);
     }
+    public void createAddress(Long customerId, CustomerAddress customerAddress){
+        customerRepository.createAddress(customerId, customerAddress);
+    }
+
+    public void deleteAddress(Long addressId){
+        customerRepository.deleteAddress(addressId);
+    }
 }
