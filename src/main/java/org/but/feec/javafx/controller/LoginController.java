@@ -8,10 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
+import org.but.feec.javafx.api.AuthenticationDetails;
+import org.but.feec.javafx.data.CustomerRepository;
 import org.but.feec.javafx.exceptions.ExceptionHandler;
+import org.but.feec.javafx.services.AuthenticationService;
+import org.but.feec.javafx.services.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 
 public class LoginController {
@@ -28,8 +31,35 @@ public class LoginController {
     public Button loginButton;
     @FXML
     public Button registerButton;
+    AuthenticationService authenticationService = new AuthenticationService();
+    CustomerService customerService;
+    CustomerRepository customerRepository;
 
+    public void initialize(){
+        customerRepository = new CustomerRepository();
+        customerService = new CustomerService(customerRepository);
+    }
     public void login(){
+        String email = emailTextField.getText();
+        String password = passwordTextField.getText();
+        System.out.println("Entered email: " + email);
+        AuthenticationDetails authenticationDetails = initializeGetSaltHashByEmail(email);
+        if( !authenticationDetails.equals(null)){
+            if (authenticationService.verifyPassword(password, authenticationDetails)){
+                System.out.println("Password is valid.");
+                showMenu();
+            }
+            else{
+                System.out.println("Password is not valid.");
+            }
+        }
+        else {
+            System.out.println("Email isn't in the database.");
+        }
+
+    }
+
+    public void showMenu(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/Menu.fxml"));
@@ -46,6 +76,10 @@ public class LoginController {
         } catch (IOException ex) {
             ExceptionHandler.handleException(ex);
         }
+    }
+
+    private AuthenticationDetails initializeGetSaltHashByEmail(String email){
+        return customerService.getSaltHashByEmail(email);
     }
 
     public void register(){

@@ -1,5 +1,6 @@
 package org.but.feec.javafx.services;
 
+import org.but.feec.javafx.api.AuthenticationDetails;
 import org.but.feec.javafx.api.CustomerAddress;
 import org.but.feec.javafx.api.CustomerDetails;
 import org.but.feec.javafx.data.CustomerRepository;
@@ -11,6 +12,11 @@ public class CustomerService {
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
+    public AuthenticationDetails getSaltHashByEmail(String email){
+        return customerRepository.getSaltHashByEmail(email);
+    }
+
     public List<CustomerAddress> getCustomerAddress(Long id){
         return customerRepository.getCustomerAddress(id);
     }

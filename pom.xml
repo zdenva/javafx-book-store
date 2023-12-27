@@ -84,11 +84,10 @@
       <artifactId>HikariCP</artifactId>
       <version>5.0.1</version>
     </dependency>
-    <!-- for hashing with Argon2 -->
     <dependency>
-      <groupId>de.mkammerer</groupId>
-      <artifactId>argon2-jvm</artifactId>
-      <version>2.11</version>
+      <groupId>at.favre.lib</groupId>
+      <artifactId>bcrypt</artifactId>
+      <version>0.10.2</version>
     </dependency>
     <!-- Logging with SLF4J -->
     <dependency>

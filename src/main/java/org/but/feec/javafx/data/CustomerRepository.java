@@ -1,5 +1,6 @@
 package org.but.feec.javafx.data;
 
+import org.but.feec.javafx.api.AuthenticationDetails;
 import org.but.feec.javafx.api.CustomerAddress;
 import org.but.feec.javafx.api.CustomerDetails;
 import org.but.feec.javafx.config.DataSourceConfig;
@@ -338,5 +339,23 @@ public class CustomerRepository {
         }catch (SQLException ex){
             throw new DataAcessException(exception, ex);
         }
+    }
+
+    public AuthenticationDetails getSaltHashByEmail(String email) {
+        AuthenticationDetails authenticationDetails = new AuthenticationDetails();
+        try {
+            Connection connection = DataSourceConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT password_hash, password_salt FROM book_store.customer WHERE email = ?;", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+
+            authenticationDetails.setPasswordHash(resultSet.getString("password_hash"));
+            authenticationDetails.setPasswordSalt(resultSet.getString("password_salt"));
+        }catch (SQLException ex){
+            throw new DataAcessException("Email is not in the database.", ex);
+        }
+        return authenticationDetails;
     }
 }
