@@ -33,19 +33,26 @@
                   <Insets bottom="5.0" left="5.0" top="5.0" />
                </padding>
             </Label>
-            <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+            <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="45.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER_RIGHT">
                      <children>
                         <Label text="Login as" />
-                        <Label text="..." />
+                        <Label id="emailLabel" fx:id="emailLabel" text="..." />
                      </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Logout" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logout" text="Logout">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#menu" text="Menu" />
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -61,25 +68,31 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER">
                <children>
-                  <Button id="bookViewButton" fx:id="bookViewButton" mnemonicParsing="false" onAction="#viewBook" text="View">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button id="buyBookButton" fx:id="bookBuyButton" mnemonicParsing="false" onAction="#buyBook" text="Buy">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Label text="Filter by tilte:">
-                     <HBox.margin>
-                        <Insets left="80.0" right="8.0" />
-                     </HBox.margin>
-                  </Label>
-                  <TextField id="titleFilterInput" fx:id="titleFilterInput" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button id="bookViewButton" fx:id="bookViewButton" alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#viewBook" text="View">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Label text="Filter:">
+                           <HBox.margin>
+                              <Insets right="8.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField id="titleFilterInput" fx:id="titleFilterInput" promptText="Title" />
+                     </children>
+                  </HBox>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

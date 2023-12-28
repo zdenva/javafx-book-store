@@ -6,14 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
-import org.but.feec.javafx.api.BookCatalog;
 import org.but.feec.javafx.api.CustomerAddress;
 import org.but.feec.javafx.api.CustomerDetails;
 import org.but.feec.javafx.data.CustomerRepository;
@@ -62,18 +58,20 @@ public class CustomerEditController {
 
     @FXML
     private Button updateButton;
+    public Label emailLabel;
 
     CustomerRepository customerRepository;
     CustomerService customerService;
     private Long phoneId;
-    private Long customerId;
+    private CustomerDetails customer;
 
-    public void setCustomerId(Long customerId){
-        this.customerId = customerId;
+    public void setCustomer(CustomerDetails customer){
+        this.customer = customer;
         initialize();
     }
 
     private void initialize(){
+        emailLabel.setText(customer.getEmail());
         customerRepository = new CustomerRepository();
         customerService = new CustomerService(customerRepository);
         streetNameCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("streetName"));
@@ -82,25 +80,25 @@ public class CustomerEditController {
         countryCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("country"));
         updateAddressTable();
 
-        CustomerDetails customerDetails = initializeCustomerDetails(customerId);
-        emailInput.setText(customerDetails.getEmail());
-        firstNameInput.setText(customerDetails.getFirstName());
-        lastNameInput.setText(customerDetails.getLastName());
-        phoneId = customerDetails.getPhoneId();
+
+        emailInput.setText(customer.getEmail());
+        firstNameInput.setText(customer.getFirstName());
+        lastNameInput.setText(customer.getLastName());
+        phoneId = customer.getPhoneId();
         if(phoneId != 0) {
-            phoneNumberInput.setText(customerDetails.getPhoneNumber());
+            phoneNumberInput.setText(customer.getPhoneNumber());
         }
     }
 
     public void updateAddressTable(){
-        ObservableList<CustomerAddress> observableList = initializeCustomerAddress(customerId);
+        ObservableList<CustomerAddress> observableList = initializeCustomerAddress(customer.getId());
         addressTable.setItems(observableList);
     }
 
     @FXML
     public void updateCustomer(){
         CustomerDetails customerDetails = new CustomerDetails();
-        customerDetails.setId(customerId);
+        customerDetails.setId(customer.getId());
         customerDetails.setPhoneId(phoneId);
         customerDetails.setEmail(emailInput.getText());
         customerDetails.setFirstName(firstNameInput.getText());
@@ -116,9 +114,7 @@ public class CustomerEditController {
         return FXCollections.observableArrayList(addresses);
     }
 
-    private CustomerDetails initializeCustomerDetails(Long id){
-        return customerService.getCustomerDetails(id);
-    }
+
 
     @FXML
     public void addAddress() {
@@ -155,7 +151,7 @@ public class CustomerEditController {
                 }
                 controller.setAddress(customerAddress);
             }
-            controller.setCustomerId(customerId);
+            controller.setCustomerId(customer.getId());
             controller.setState(state);
 
             Scene scene = new Scene(root);
@@ -165,6 +161,45 @@ public class CustomerEditController {
 
             stage.show();
         }catch (IOException ex){
+            ExceptionHandler.handleException(ex);
+        }
+    }
+    public void logout(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("App.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load(), 600,600);
+            Stage stage = new Stage();
+            stage.setTitle("Book store - book catalog");
+            stage.setScene(scene);
+
+            Stage stageOld = (Stage) updateButton.getScene().getWindow();
+            stageOld.close();
+
+            stage.show();
+        }catch(IOException ex){
+            ExceptionHandler.handleException(ex);
+        }
+    }
+    public void menu(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Menu.fxml"));
+            Parent root = fxmlLoader.load();
+            MenuController controller = fxmlLoader.getController();
+            controller.setCustomer(customer);
+
+            Scene scene = new Scene(root, 600,600);
+            Stage stage = new Stage();
+            stage.setTitle("Book store - book catalog");
+            stage.setScene(scene);
+
+            Stage stageOld = (Stage) emailLabel.getScene().getWindow();
+            stageOld.close();
+
+            stage.show();
+        }catch(IOException ex){
             ExceptionHandler.handleException(ex);
         }
     }

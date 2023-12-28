@@ -38,14 +38,21 @@
                   <VBox alignment="CENTER_RIGHT">
                      <children>
                         <Label text="Login as" />
-                        <Label text="..." />
+                        <Label id="emailLabel" fx:id="emailLabel" text="..." />
                      </children>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Logout" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logout" text="Logout">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#menu" text="Menu" />
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
             </HBox>
          </children>

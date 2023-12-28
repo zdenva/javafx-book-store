@@ -36,12 +36,12 @@
                   <VBox alignment="CENTER_RIGHT">
                      <children>
                         <Label text="Login as" />
-                        <Label text="..." />
+                        <Label id="emailLabel" fx:id="emailLabel" text="..." />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Logout" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logout" text="Logout" />
                      </children>
                   </VBox>
                </children>

@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,11 +14,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
 import org.but.feec.javafx.api.BookCatalog;
+import org.but.feec.javafx.api.CustomerDetails;
 import org.but.feec.javafx.data.BookRepository;
 import org.but.feec.javafx.exceptions.ExceptionHandler;
 import org.but.feec.javafx.services.BookService;
-
-import java.awt.event.ActionEvent;
+import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -27,9 +26,7 @@ import java.util.List;
 public class BookCatalogController {
 
     @FXML
-    private Button bookViewButton;
-    @FXML
-    private Button bookBuyButton;
+    public Label emailLabel;
     @FXML
     private TableView<BookCatalog> booksTable;
     @FXML
@@ -47,12 +44,18 @@ public class BookCatalogController {
 
     @FXML
     private TextField titleFilterInput;
-
     private BookService bookService;
     private BookRepository bookRepository;
+    private CustomerDetails customer;
 
-    @FXML
+    public void setCustomer(CustomerDetails customer){
+        this.customer = customer;
+        initialize();
+
+    }
+
     private void initialize(){
+        emailLabel.setText(customer.getEmail());
         bookRepository = new BookRepository();
         bookService = new BookService(bookRepository);
 
@@ -76,9 +79,6 @@ public class BookCatalogController {
                 return bookCatalog.getTitle().toLowerCase().contains(lowerCaseFilter);
             });
         });
-
-
-
         setupHandles();
     }
 
@@ -112,6 +112,45 @@ public class BookCatalogController {
 
             stage.show();
         }catch (IOException ex){
+            ExceptionHandler.handleException(ex);
+        }
+    }
+    public void logout(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("App.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load(), 600,600);
+            Stage stage = new Stage();
+            stage.setTitle("Book store - book catalog");
+            stage.setScene(scene);
+
+            Stage stageOld = (Stage) emailLabel.getScene().getWindow();
+            stageOld.close();
+
+            stage.show();
+        }catch(IOException ex){
+            ExceptionHandler.handleException(ex);
+        }
+    }
+    public void menu(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Menu.fxml"));
+            Parent root = fxmlLoader.load();
+            MenuController controller = fxmlLoader.getController();
+            controller.setCustomer(customer);
+
+            Scene scene = new Scene(root, 600,600);
+            Stage stage = new Stage();
+            stage.setTitle("Book store - book catalog");
+            stage.setScene(scene);
+
+            Stage stageOld = (Stage) emailLabel.getScene().getWindow();
+            stageOld.close();
+
+            stage.show();
+        }catch(IOException ex){
             ExceptionHandler.handleException(ex);
         }
     }
