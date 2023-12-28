@@ -2,6 +2,7 @@ package org.but.feec.javafx.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
@@ -43,6 +45,9 @@ public class BookCatalogController {
     @FXML
     private TableColumn<BookCatalog, String> isbnCol;
 
+    @FXML
+    private TextField titleFilterInput;
+
     private BookService bookService;
     private BookRepository bookRepository;
 
@@ -59,7 +64,20 @@ public class BookCatalogController {
         isbnCol.setCellValueFactory(new PropertyValueFactory<BookCatalog, String>("isbn"));
 
         ObservableList<BookCatalog> observableBookList = initializeBooksData();
-        booksTable.setItems(observableBookList);
+        FilteredList<BookCatalog> filteredList = new FilteredList<>(observableBookList, p -> true);
+        booksTable.setItems(filteredList);
+
+        titleFilterInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(bookCatalog -> {
+                if (newValue == null || newValue.trim().isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return bookCatalog.getTitle().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+
 
         setupHandles();
     }

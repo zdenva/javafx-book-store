@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -60,7 +61,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button id="bookViewButton" fx:id="bookViewButton" mnemonicParsing="false" onAction="#viewBook" text="View">
                      <HBox.margin>
@@ -72,6 +73,12 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
+                  <Label text="Filter by tilte:">
+                     <HBox.margin>
+                        <Insets left="80.0" right="8.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField id="titleFilterInput" fx:id="titleFilterInput" />
                </children>
             </HBox>
          </children>

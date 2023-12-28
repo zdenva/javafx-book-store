@@ -1,10 +1,25 @@
 package org.but.feec.javafx.api;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class AuthenticationDetails {
+    private LongProperty id = new SimpleLongProperty();
     private StringProperty passwordHash = new SimpleStringProperty();
     private StringProperty passwordSalt = new SimpleStringProperty();
+
+    public long getId() {
+        return id.get();
+    }
+
+    public LongProperty idProperty() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id.set(id);
+    }
 
     public String getPasswordHash() {
         return passwordHash.get();

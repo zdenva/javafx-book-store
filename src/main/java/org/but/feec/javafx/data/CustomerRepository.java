@@ -346,11 +346,12 @@ public class CustomerRepository {
         try {
             Connection connection = DataSourceConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT password_hash, password_salt FROM book_store.customer WHERE email = ?;", Statement.RETURN_GENERATED_KEYS);
+                    "SELECT customer_id, password_hash, password_salt FROM book_store.customer WHERE email = ?;", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
 
+            authenticationDetails.setId(resultSet.getLong("customer_id"));
             authenticationDetails.setPasswordHash(resultSet.getString("password_hash"));
             authenticationDetails.setPasswordSalt(resultSet.getString("password_salt"));
         }catch (SQLException ex){
