@@ -69,7 +69,6 @@
                   </Label>
                   <TableView id="bookAuthorTable" fx:id="bookAuthorTable" prefWidth="200.0">
                      <columns>
-                        <TableColumn id="authorIdCol" fx:id="authorIdCol" prefWidth="31.0" text="Id" />
                         <TableColumn id="authorFirstNameCol" fx:id="authorFirstNameCol" prefWidth="89.0" text="First name" />
                         <TableColumn id="authorLastNameCol" fx:id="authorLastNameCol" prefWidth="222.0" text="Last name" />
                      </columns>

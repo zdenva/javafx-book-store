@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
 import org.but.feec.javafx.api.CustomerDetails;
-import org.but.feec.javafx.exceptions.DataAcessException;
 import org.but.feec.javafx.exceptions.ExceptionHandler;
 
 import java.io.IOException;
@@ -20,8 +19,6 @@ public class MenuController {
     public Button editProfileButton;
     @FXML
     public Button bookCatalogButton;
-    @FXML
-    public Button myOrdersButton;
     @FXML
     public Label emailLabel;
     private CustomerDetails customer;
@@ -44,7 +41,7 @@ public class MenuController {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
             Stage stageOld = (Stage) editProfileButton.getScene().getWindow();
             stageOld.close();
@@ -65,7 +62,7 @@ public class MenuController {
 
             Scene scene = new Scene(root, 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) bookCatalogButton.getScene().getWindow();
@@ -83,7 +80,7 @@ public class MenuController {
 
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) editProfileButton.getScene().getWindow();

@@ -277,7 +277,7 @@ public class CustomerRepository {
                              throw new DataAcessException(exception2);
                          }
                          connection.commit();
-                         generatedKey= preparedStatement2.getGeneratedKeys();
+                         generatedKey = preparedStatement2.getGeneratedKeys();
                          if (generatedKey.next()) {
                              id = generatedKey.getLong(1 );
                          } else {

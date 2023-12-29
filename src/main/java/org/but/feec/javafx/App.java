@@ -21,7 +21,7 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("App.fxml"));
             VBox mainStage = loader.load();
 
-            primaryStage.setTitle("BDS JavaFX Demo");
+            primaryStage.setTitle("Book store");
             Scene scene = new Scene(mainStage);
             setUserAgentStylesheet(new Dracula().getUserAgentStylesheet());
             primaryStage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));

@@ -45,7 +45,6 @@ public class BookCatalogController {
     @FXML
     private TextField titleFilterInput;
     private BookService bookService;
-    private BookRepository bookRepository;
     private CustomerDetails customer;
 
     public void setCustomer(CustomerDetails customer){
@@ -56,7 +55,7 @@ public class BookCatalogController {
 
     private void initialize(){
         emailLabel.setText(customer.getEmail());
-        bookRepository = new BookRepository();
+        BookRepository bookRepository = new BookRepository();
         bookService = new BookService(bookRepository);
 
         idCol.setCellValueFactory(new PropertyValueFactory<BookCatalog, Long>("id"));
@@ -70,15 +69,13 @@ public class BookCatalogController {
         FilteredList<BookCatalog> filteredList = new FilteredList<>(observableBookList, p -> true);
         booksTable.setItems(filteredList);
 
-        titleFilterInput.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(bookCatalog -> {
-                if (newValue == null || newValue.trim().isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                return bookCatalog.getTitle().toLowerCase().contains(lowerCaseFilter);
-            });
-        });
+        titleFilterInput.textProperty().addListener((observable, oldValue, newValue) -> filteredList.setPredicate(bookCatalog -> {
+            if (newValue == null || newValue.trim().isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            return bookCatalog.getTitle().toLowerCase().contains(lowerCaseFilter);
+        }));
         setupHandles();
     }
 
@@ -90,8 +87,6 @@ public class BookCatalogController {
         return FXCollections.observableArrayList(books);
     }
 
-    public void buyBook() {
-    }
     public void viewBook() {
         try {
             BookCatalog bookCatalog = booksTable.getSelectionModel().getSelectedItem();
@@ -107,7 +102,7 @@ public class BookCatalogController {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
 
-            stage.setTitle("Book store - book view");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             stage.show();
@@ -122,7 +117,7 @@ public class BookCatalogController {
 
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) emailLabel.getScene().getWindow();
@@ -143,7 +138,7 @@ public class BookCatalogController {
 
             Scene scene = new Scene(root, 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) emailLabel.getScene().getWindow();

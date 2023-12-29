@@ -27,14 +27,11 @@ public class BookViewController {
     @FXML
     private TableView<BookViewAuthors> bookAuthorTable;
     @FXML
-    private TableColumn<BookViewAuthors, Long> authorIdCol;
-    @FXML
     private TableColumn<BookViewAuthors, String> authorFirstNameCol;
     @FXML
     private TableColumn<BookViewAuthors, String> authorLastNameCol;
     @FXML
     private BookService bookService;
-    private BookRepository bookRepository;
 
     private Long bookId;
     public void setBookId(Long id) {
@@ -43,21 +40,21 @@ public class BookViewController {
     }
 
     private void initialize(){
-    bookRepository = new BookRepository();
-    bookService = new BookService(bookRepository);
 
-    detailNameCol.setCellValueFactory(new PropertyValueFactory<BookViewDetails, String>("detailName"));
-    detailValueCol.setCellValueFactory(new PropertyValueFactory<BookViewDetails, String>("detailValue"));
-    authorIdCol.setCellValueFactory(new PropertyValueFactory<BookViewAuthors, Long>("authorId"));
-    authorFirstNameCol.setCellValueFactory(new PropertyValueFactory<BookViewAuthors, String>("authorFirstName"));
-    authorLastNameCol.setCellValueFactory(new PropertyValueFactory<BookViewAuthors, String>("authorLastName"));
+        BookRepository bookRepository = new BookRepository();
+        bookService = new BookService(bookRepository);
 
-    ObservableList<BookViewDetails> observableBookList1 = initializeBookViewDetailsData(bookId);
-    bookDetailTable.setItems(observableBookList1);
+        detailNameCol.setCellValueFactory(new PropertyValueFactory<BookViewDetails, String>("detailName"));
+        detailValueCol.setCellValueFactory(new PropertyValueFactory<BookViewDetails, String>("detailValue"));
+        authorFirstNameCol.setCellValueFactory(new PropertyValueFactory<BookViewAuthors, String>("authorFirstName"));
+        authorLastNameCol.setCellValueFactory(new PropertyValueFactory<BookViewAuthors, String>("authorLastName"));
 
-    ObservableList<BookViewAuthors> observableBookList2 = initializeBookViewAuthorsData(bookId);
-    bookAuthorTable.setItems(observableBookList2);
+        ObservableList<BookViewDetails> observableBookList1 = initializeBookViewDetailsData(bookId);
+        bookDetailTable.setItems(observableBookList1);
+        viewLabel.setText(observableBookList1.get(0).getDetailValue());
 
+        ObservableList<BookViewAuthors> observableBookList2 = initializeBookViewAuthorsData(bookId);
+        bookAuthorTable.setItems(observableBookList2);
     }
 
     private ObservableList<BookViewDetails> initializeBookViewDetailsData(long id){

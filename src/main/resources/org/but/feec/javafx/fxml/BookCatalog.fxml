@@ -98,7 +98,7 @@
       </VBox>
       <TableView id="booksTable" fx:id="booksTable">
         <columns>
-          <TableColumn id="idCol" fx:id="idCol" prefWidth="30.0" text="ID" />
+          <TableColumn id="idCol" fx:id="idCol" prefWidth="30.0" text="ID" visible="false" />
           <TableColumn id="titleCol" fx:id="titleCol" prefWidth="127.0" text="Title" />
             <TableColumn id="genreCol" fx:id="genreCol" minWidth="0.0" prefWidth="86.0" text="Genre" />
             <TableColumn id="pubDateCol" fx:id="pubDateCol" minWidth="0.0" prefWidth="57.0" text="Publication Date" />

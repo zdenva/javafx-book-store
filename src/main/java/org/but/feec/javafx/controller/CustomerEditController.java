@@ -156,7 +156,7 @@ public class CustomerEditController {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book view");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             stage.show();
@@ -171,7 +171,7 @@ public class CustomerEditController {
 
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) updateButton.getScene().getWindow();
@@ -192,7 +192,7 @@ public class CustomerEditController {
 
             Scene scene = new Scene(root, 600,600);
             Stage stage = new Stage();
-            stage.setTitle("Book store - book catalog");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) emailLabel.getScene().getWindow();

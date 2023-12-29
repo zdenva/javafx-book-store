@@ -75,7 +75,7 @@ public class LoginController {
             Scene scene = new Scene(root, 1000, 600);
             Stage stage = new Stage();
             stage.setResizable(true);
-            stage.setTitle("Book store - menu");
+            stage.setTitle("Book store");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) loginButton.getScene().getWindow();

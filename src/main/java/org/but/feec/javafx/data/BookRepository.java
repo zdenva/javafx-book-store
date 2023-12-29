@@ -23,12 +23,10 @@ public class BookRepository {
                     "SELECT book_id, title, genre, isbn, num_pages, publication_date, publisher_name, language_name, language_code FROM book_store.book NATURAL JOIN book_store.publisher NATURAL JOIN book_store.book_language WHERE book_id = ?;", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<BookViewDetails> bookViewDetails = new ArrayList<>();
             resultSet.next();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             return Stream.of(
-                    createDetail("Id", Long.toString(resultSet.getLong("book_id"))),
                     createDetail("Title", resultSet.getString("title")),
                     createDetail("Genre", resultSet.getString("genre")),
                     createDetail("ISBN", resultSet.getString("isbn")),
