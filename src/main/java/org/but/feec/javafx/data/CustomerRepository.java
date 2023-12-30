@@ -302,9 +302,7 @@ public class CustomerRepository {
         }
     }
     public void deleteAddress(Long addressId){
-        String deleteAddressSQL = "DELETE FROM book_store.address WHERE address_id = ?";
         String deleteAddressCustomerConnectionSQL = "DELETE FROM book_store.customer_address WHERE address_id = ?";
-        String exception2 = "Deleting address failed.";
         String exception = "Deleting address connection to customer failed.";
         try {
             Connection connection = DataSourceConfig.getConnection();
@@ -321,20 +319,6 @@ public class CustomerRepository {
             catch (SQLException ex){
                 connection.rollback();
                 throw new DataAcessException(exception, ex);
-            }
-            PreparedStatement preparedStatement2 = connection.prepareStatement(deleteAddressSQL);
-            preparedStatement2.setLong(1, addressId);
-            try {
-                connection.setAutoCommit(false);
-                int effectedRows = preparedStatement2.executeUpdate();
-                if (effectedRows == 0){
-                    throw new DataAcessException(exception2);
-                }
-                connection.commit();
-            }
-            catch (SQLException ex){
-                connection.rollback();
-                throw new DataAcessException(exception2, ex);
             }
         }catch (SQLException ex){
             throw new DataAcessException(exception, ex);

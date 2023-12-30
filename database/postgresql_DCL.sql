@@ -14,6 +14,9 @@ GRANT SELECT ON TABLE book_store.address_status TO "bds-customer";
 GRANT SELECT, DELETE, INSERT ON TABLE book_store.customer_address TO "bds-customer";
 GRANT SELECT, INSERT, UPDATE ON TABLE book_store.customer_phone TO "bds-customer";
 GRANT SELECT, INSERT ON TABLE book_store.country TO "bds-customer";
+GRANT USAGE, SELECT ON SEQUENCE book_store.customer_phone_phone_id_seq TO "bds-customer";
+GRANT USAGE, SELECT ON SEQUENCE book_store.address_address_id_seq TO "bds-customer";
+GRANT USAGE, SELECT ON SEQUENCE book_store.country_country_id_seq TO "bds-customer";
 
 -- for backup
 

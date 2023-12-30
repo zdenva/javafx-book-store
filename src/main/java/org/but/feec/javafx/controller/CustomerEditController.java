@@ -61,8 +61,7 @@ public class CustomerEditController {
     public Label emailLabel;
 
     CustomerRepository customerRepository;
-    CustomerService customerService;
-    private Long phoneId;
+    private CustomerService customerService;
     private CustomerDetails customer;
 
     public void setCustomer(CustomerDetails customer){
@@ -79,15 +78,7 @@ public class CustomerEditController {
         cityCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("city"));
         countryCol.setCellValueFactory(new PropertyValueFactory<CustomerAddress, String>("country"));
         updateAddressTable();
-
-
-        emailInput.setText(customer.getEmail());
-        firstNameInput.setText(customer.getFirstName());
-        lastNameInput.setText(customer.getLastName());
-        phoneId = customer.getPhoneId();
-        if(phoneId != 0) {
-            phoneNumberInput.setText(customer.getPhoneNumber());
-        }
+        updateTextFields();
     }
 
     public void updateAddressTable(){
@@ -99,14 +90,30 @@ public class CustomerEditController {
     public void updateCustomer(){
         CustomerDetails customerDetails = new CustomerDetails();
         customerDetails.setId(customer.getId());
-        customerDetails.setPhoneId(phoneId);
+        customerDetails.setPhoneId(customer.getPhoneId());
         customerDetails.setEmail(emailInput.getText());
         customerDetails.setFirstName(firstNameInput.getText());
         customerDetails.setLastName(lastNameInput.getText());
         customerDetails.setPhoneNumber(phoneNumberInput.getText());
 
         customerService.editCustomerDetails(customerDetails);
-        System.out.println("Success updating.");
+        initializeCustomer();
+        updateTextFields();
+    }
+
+    private void initializeCustomer(){
+        Long customerId = customer.getId();
+        customer = new CustomerDetails();
+        customer = customerService.getCustomerDetails(customerId);
+    }
+
+    private void updateTextFields(){
+        emailInput.setText(customer.getEmail());
+        firstNameInput.setText(customer.getFirstName());
+        lastNameInput.setText(customer.getLastName());
+        if(customer.getPhoneId() != 0) {
+            phoneNumberInput.setText(customer.getPhoneNumber());
+        }
     }
 
     private ObservableList<CustomerAddress> initializeCustomerAddress(Long id){

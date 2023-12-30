@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,8 +16,11 @@ import org.but.feec.javafx.data.CustomerRepository;
 import org.but.feec.javafx.exceptions.ExceptionHandler;
 import org.but.feec.javafx.services.AuthenticationService;
 import org.but.feec.javafx.services.CustomerService;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 
 public class LoginController {
@@ -36,14 +40,14 @@ public class LoginController {
     AuthenticationService authenticationService = new AuthenticationService();
     CustomerService customerService;
     CustomerRepository customerRepository;
-
     CustomerDetails customerDetails;
-
-    public void initialize(){
+    public void initialize() {
         customerRepository = new CustomerRepository();
         customerService = new CustomerService(customerRepository);
     }
     public void login(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
         System.out.println("Entered email: " + email);
@@ -52,9 +56,13 @@ public class LoginController {
             if (authenticationService.verifyPassword(password, authenticationDetails)){
                 System.out.println("Password is valid.");
                 customerDetails = initializeCustomerDetails(authenticationDetails.getId());
+                alert.setHeaderText("Customer was verified successfully.");
+                alert.show();
                 showMenu();
             }
             else{
+                alert.setHeaderText("Email or password is not valid.");
+                alert.show();
                 System.out.println("Password is not valid.");
             }
         }
@@ -63,7 +71,6 @@ public class LoginController {
         }
 
     }
-
     public void showMenu(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
