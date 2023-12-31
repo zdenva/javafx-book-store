@@ -57,11 +57,13 @@ public class LoginController {
                 System.out.println("Password is valid.");
                 customerDetails = initializeCustomerDetails(authenticationDetails.getId());
                 alert.setHeaderText("Customer was verified successfully.");
+                logger.info("Customer " + customerDetails.getEmail() + " was logged in.");
                 alert.show();
                 showMenu();
             }
             else{
                 alert.setHeaderText("Email or password is not valid.");
+                logger.info("Customer tried login with invalid email or password.");
                 alert.show();
                 System.out.println("Password is not valid.");
             }
