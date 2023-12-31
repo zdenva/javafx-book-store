@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="fpga" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.LoginController">
+<VBox fx:id="fpga" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.but.feec.javafx.controller.LoginController">
    <children>
       <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" style="-fx-background-color: #3D3F4A;" VBox.vgrow="NEVER">
          <children>
@@ -48,7 +48,7 @@
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button id="registerButton" fx:id="registerButton" mnemonicParsing="false" onAction="#register" text="Register">
+                        <Button id="registerButton" fx:id="registerButton" disable="true" mnemonicParsing="false" onAction="#register" text="Register">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
