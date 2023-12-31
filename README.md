@@ -27,7 +27,7 @@ View where customer can edit or create his/her address.
 ![app_address_edit](/img/assignment_3/app_address_edit.png)
 
 ## Install steps
-Database setup
+**Database setup**
 1. Install pg-admin and run it.
 ```bash
 git clone https://gitlab.com/but-courses/bpc-bds/seminar-projects/bpc-bds-db-setup.git
@@ -37,7 +37,7 @@ docker-compose up
 2. In pg-admin create database with name  `bds-zdenva`.
 3. In the database what was created open `Query Tool`.
 4. Run content of files [postgresql_DDL.sql](/database/postgresql_DDL.sql), [postgresql_DML.sql](/database/posgresql_DML.sql) and [postgres_DCL](/database/postgresql_DCL.sql).
-Application setup
+**Application setup**
 - Build JavaFX application.
 ```bash
 mvn clean install
@@ -45,6 +45,26 @@ mvn clean install
 - Run JavaFX application. 
 ```bash
 java -jar target/my-bds-app-1.0.0.jar
+```
+**SSL connection**
+1. In application.properties comment 2 line and uncomment 4 line.
+2. Generate server.key and server.crt. Use your password for variable your_password.
+```bash
+ openssl req -newkey rsa:2048 -x509 -keyout server.key -out server.crt -days 365 -passout pass:your_password
+```
+3. Import server.crt to the java keystroke. Use your password for variable your_password and for <path> your path for server.crt
+```bash
+  keytool -import -trustcacerts -keystore -cacerts -storepass your_password -noprompt -alias my_postgresql_cert -file <path>/server.crt
+```
+4. In file postgresql.conf use this configuration. In variable path use your location of certificate and key
+```
+    ssl = on
+    ssl_cert_file = '<path>/server.crt'
+    ssl_key_file = '<path>/server.key'
+```
+5. In file pg_hba.conf. Use your ip in YOUR_IP_ADDRESS.
+```
+    hostssl all all YOUR_IP_ADDRESS/32 scram-sha-256
 ```
 ## Diagrams
 - PostgreSQL ERD
@@ -56,3 +76,4 @@ java -jar target/my-bds-app-1.0.0.jar
 ![Use Case Diagram](/img/diagrams/BDS_Use_Case_Diagram.png)
 - System Context Diagram
 ![MySQL ERD](/img/diagrams/BDS_System_Context_Diagram.png)
+
