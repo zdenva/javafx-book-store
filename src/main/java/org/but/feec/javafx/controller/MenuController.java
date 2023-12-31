@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
 import org.but.feec.javafx.api.CustomerDetails;
@@ -42,6 +43,7 @@ public class MenuController {
             Stage stage = new Stage();
 
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
             Stage stageOld = (Stage) editProfileButton.getScene().getWindow();
             stageOld.close();
@@ -63,6 +65,7 @@ public class MenuController {
             Scene scene = new Scene(root, 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
 
             Stage stageOld = (Stage) bookCatalogButton.getScene().getWindow();
@@ -81,6 +84,7 @@ public class MenuController {
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
 
             Stage stageOld = (Stage) editProfileButton.getScene().getWindow();

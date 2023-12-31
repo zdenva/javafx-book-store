@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
 import org.but.feec.javafx.api.AuthenticationDetails;
@@ -85,6 +86,8 @@ public class LoginController {
             Stage stage = new Stage();
             stage.setResizable(true);
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
+
             stage.setScene(scene);
 
             Stage stageOld = (Stage) loginButton.getScene().getWindow();

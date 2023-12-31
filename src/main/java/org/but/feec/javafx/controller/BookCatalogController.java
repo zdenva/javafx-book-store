@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.but.feec.javafx.App;
 import org.but.feec.javafx.api.BookCatalog;
@@ -103,6 +104,7 @@ public class BookCatalogController {
             Stage stage = new Stage();
 
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
 
             stage.show();
@@ -118,6 +120,7 @@ public class BookCatalogController {
             Scene scene = new Scene(fxmlLoader.load(), 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
 
             Stage stageOld = (Stage) emailLabel.getScene().getWindow();
@@ -139,6 +142,7 @@ public class BookCatalogController {
             Scene scene = new Scene(root, 600,600);
             Stage stage = new Stage();
             stage.setTitle("Book store");
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
             stage.setScene(scene);
 
             Stage stageOld = (Stage) emailLabel.getScene().getWindow();
